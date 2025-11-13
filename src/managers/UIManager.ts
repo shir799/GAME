@@ -416,13 +416,13 @@ export class UIManager {
 
     container.innerHTML = this.gameState.plots
       .map((plot, index) => {
-        if (!plot.unlocked) {
+        if (!plot.isUnlocked) {
           return `
             <div class="stat-card opacity-50">
               <div class="text-center">
                 <div class="text-4xl mb-2">🔒</div>
                 <div class="text-sm text-gray-400">Locked</div>
-                <div class="text-xs text-gray-500">Level ${plot.unlockLevel} required</div>
+                <div class="text-xs text-gray-500">Unlock at higher level</div>
               </div>
             </div>
           `;
@@ -443,15 +443,17 @@ export class UIManager {
         }
 
         const plant = plot.plant;
-        const progress = ((Date.now() - plant.plantedAt) / plant.growthTime) * 100;
-        const isReady = progress >= 100;
-        const timeLeft = Math.max(0, plant.growthTime - (Date.now() - plant.plantedAt));
+        // Assume 3 minutes growth time for now (180000 ms) - TODO: get from config
+        const growthTime = 180000;
+        const progress = ((Date.now() - plant.plantedAt) / growthTime) * 100;
+        const isReady = progress >= 100 || plant.stage === 'ready';
+        const timeLeft = Math.max(0, growthTime - (Date.now() - plant.plantedAt));
 
         return `
           <div class="stat-card ${isReady ? 'border-2 border-green-500 animate-pulse' : ''}">
             <div class="text-center">
               <div class="text-4xl mb-2">${isReady ? '🌿' : '🌱'}</div>
-              <div class="text-sm font-semibold">${plant.strain}</div>
+              <div class="text-sm font-semibold">${plant.plantConfigId}</div>
               <div class="text-xs text-gray-400 mb-2">${plant.stage}</div>
 
               ${!isReady ? `
@@ -480,10 +482,11 @@ export class UIManager {
     const container = this.elements.get('upgrades-container');
     if (!container) return;
 
-    const upgrades = Object.entries(this.gameState.upgrades);
+    // Get upgrades from UpgradeManager (merged config + state)
+    const upgrades = (window as any).game?.managers?.upgrade?.getAllUpgradesWithConfig() || [];
 
     container.innerHTML = upgrades
-      .map(([id, upgrade]) => {
+      .map((upgrade: any) => {
         const canAfford = this.gameState!.player.money >= upgrade.cost;
         const isMaxLevel = upgrade.currentLevel >= upgrade.maxLevel;
 
@@ -503,7 +506,7 @@ export class UIManager {
             ${!isMaxLevel ? `
               <button
                 class="btn-primary w-full btn-sm ${!canAfford ? 'opacity-50 cursor-not-allowed' : ''}"
-                onclick="window.game.managers.upgrade.buyUpgrade('${id}')"
+                onclick="window.game.managers.upgrade.buyUpgrade('${upgrade.id}')"
                 ${!canAfford ? 'disabled' : ''}
               >
                 Buy - ${formatMoney(upgrade.cost)}

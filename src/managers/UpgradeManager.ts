@@ -230,4 +230,40 @@ export class UpgradeManager {
 
     return total;
   }
+
+  /**
+   * Get all upgrades with their configs merged with state (for UI)
+   */
+  getAllUpgradesWithConfig() {
+    return Array.from(this.upgradeConfigs.values()).map(config => {
+      const state = this.gameState.upgrades[config.id] || {
+        upgradeId: config.id,
+        currentLevel: 0,
+        isPurchased: false,
+        totalSpent: 0,
+      };
+
+      return {
+        id: config.id,
+        name: config.name,
+        description: config.description,
+        category: config.category,
+        currentLevel: state.currentLevel,
+        maxLevel: config.maxLevel,
+        cost: this.getUpgradeCost(config.id),
+        effectType: config.effect.type,
+        effectValue: config.effect.value,
+        effectTarget: config.effect.target,
+        unlockLevel: config.unlockLevel,
+        isPurchased: state.isPurchased,
+      };
+    });
+  }
+
+  /**
+   * Buy upgrade (alias for purchaseUpgrade)
+   */
+  buyUpgrade(upgradeId: string): boolean {
+    return this.purchaseUpgrade(upgradeId);
+  }
 }
