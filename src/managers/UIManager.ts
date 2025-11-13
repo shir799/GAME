@@ -462,7 +462,7 @@ export class UIManager {
                 </div>
                 <div class="text-xs text-gray-400">${formatTime(timeLeft / 1000)}</div>
               ` : `
-                <button class="btn-primary btn-sm" onclick="window.game.managers.farm.harvest(${index})">
+                <button class="btn-primary btn-sm" onclick="window.game.managers.farm.harvestPlant(${index})">
                   🌿 Harvest
                 </button>
               `}
@@ -573,12 +573,17 @@ export class UIManager {
             ` : ''}
 
             <div class="text-xs text-gray-500">
-              Reward: ${formatMoney(quest.rewards.money)}
-              ${quest.rewards.experience > 0 ? `+ ${quest.rewards.experience} XP` : ''}
+              Rewards: ${quest.rewards.map((r: any) => {
+                if (r.type === 'money') return formatMoney(r.value);
+                if (r.type === 'experience') return `${r.value} XP`;
+                if (r.type === 'cannabis') return `${r.value}g`;
+                if (r.type === 'reputation') return `${r.value} Rep`;
+                return '';
+              }).filter((r: string) => r).join(', ')}
             </div>
 
             ${isComplete && !quest.completed ? `
-              <button class="btn-primary w-full btn-sm mt-2" onclick="window.game.managers.quest.completeQuest('${quest.id}')">
+              <button class="btn-primary w-full btn-sm mt-2" onclick="window.game.managers.quest.claimRewards('${quest.id}')">
                 Claim Reward
               </button>
             ` : ''}

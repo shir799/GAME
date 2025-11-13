@@ -110,21 +110,39 @@ export class FarmManager {
     const qualityMultiplier = config.qualityMultiplier[plant.quality];
     const healthMultiplier = plant.health / 100;
 
-    const cannabisYield = baseYield * qualityMultiplier * healthMultiplier * plant.yieldMultiplier;
-    const moneyValue = config.baseMoneyValue * qualityMultiplier * healthMultiplier;
+    const cannabisYield = Math.floor(baseYield * qualityMultiplier * healthMultiplier * plant.yieldMultiplier);
+    const moneyValue = Math.floor(config.baseMoneyValue * qualityMultiplier * healthMultiplier);
 
     // Remove plant from plot
     plot.plant = null;
 
+    // Give rewards to player
+    this.gameState.player.cannabis += cannabisYield;
+    this.gameState.player.money += moneyValue;
+    this.gameState.player.totalEarnings += moneyValue;
+
     // Update statistics
     this.gameState.player.totalHarvests += 1;
     this.gameState.statistics.totalHarvests += 1;
+    this.gameState.statistics.totalCannabisGrown += cannabisYield;
+    this.gameState.statistics.totalMoneyEarned += moneyValue;
 
+    // Emit events
     this.eventBus.emit('plant:harvested', {
       plotId,
       cannabis: cannabisYield,
       money: moneyValue,
       quality: plant.quality,
+    });
+
+    this.eventBus.emit('player:cannabis_change', {
+      delta: cannabisYield,
+      newValue: this.gameState.player.cannabis
+    });
+
+    this.eventBus.emit('player:money_change', {
+      delta: moneyValue,
+      newValue: this.gameState.player.money
     });
 
     return { cannabis: cannabisYield, money: moneyValue };
