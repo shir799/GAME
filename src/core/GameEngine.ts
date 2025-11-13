@@ -94,6 +94,9 @@ export class GameEngine {
       console.log('🆕 Starting new game');
     }
 
+    // Initialize UI first (so event listeners are ready)
+    this.uiManager.initialize(this.gameState);
+
     // Initialize all managers with current state
     this.resourceManager.initialize(this.gameState);
     this.farmManager.initialize(this.gameState);
@@ -101,10 +104,9 @@ export class GameEngine {
     this.questManager.initialize(this.gameState);
     this.policeManager.initialize(this.gameState);
     this.tickManager.initialize(this.gameState);
-    this.storyManager.initialize(this.gameState);
 
-    // Initialize UI
-    this.uiManager.initialize(this.gameState);
+    // Initialize Story Manager LAST (after UI is ready to receive events)
+    this.storyManager.initialize(this.gameState);
 
     // Initial UI render
     this.uiManager.refreshUI();

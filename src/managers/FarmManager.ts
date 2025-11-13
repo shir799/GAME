@@ -56,6 +56,16 @@ export class FarmManager {
       return false;
     }
 
+    // Check if player has enough money
+    if (this.gameState.player.money < config.baseCost) {
+      console.warn(`Not enough money to plant ${config.name}. Need $${config.baseCost}, have $${this.gameState.player.money}`);
+      return false;
+    }
+
+    // Deduct cost
+    this.gameState.player.money -= config.baseCost;
+    this.gameState.statistics.totalMoneySpent += config.baseCost;
+
     // Create new plant instance
     const plant: PlantInstance = {
       id: this.generatePlantId(),
@@ -74,6 +84,10 @@ export class FarmManager {
     this.gameState.statistics.totalPlantedSeeds += 1;
 
     this.eventBus.emit('plant:planted', { plotId, plant });
+    this.eventBus.emit('player:money_change', {
+      delta: -config.baseCost,
+      newValue: this.gameState.player.money
+    });
 
     return true;
   }

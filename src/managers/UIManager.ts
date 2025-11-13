@@ -434,7 +434,7 @@ export class UIManager {
               <div class="text-center">
                 <div class="text-4xl mb-2">➕</div>
                 <div class="text-sm text-gray-400">Empty Plot</div>
-                <button class="btn-primary btn-sm mt-2" onclick="window.game.managers.farm.plantSeed(${index}, 'basic')">
+                <button class="btn-primary btn-sm mt-2" onclick="window.game.managers.farm.plantSeed(${index}, 'basic_strain')">
                   Plant Seed
                 </button>
               </div>
