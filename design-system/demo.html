@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cannabis Tycoon - Design System Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./animations.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cannabis: {
+              50: '#ECFDF5',
+              100: '#D1FAE5',
+              200: '#A7F3D0',
+              300: '#6EE7B7',
+              400: '#34D399',
+              500: '#10B981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065F46',
+              900: '#064E3B',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    }
+
+    .icon-demo {
+      transition: all 0.2s ease;
+    }
+
+    .icon-demo:hover {
+      transform: scale(1.1);
+    }
+
+    .section {
+      scroll-margin-top: 80px;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 text-green-500">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C12 2 10 4 10 6C10 6 8 5 7 7C7 7 5 8 6 10C6 10 4 10 4 12C4 14 6 14 6 14C6 14 5 16 7 17C7 17 8 19 10 18C10 18 10 20 12 20C14 20 14 18 14 18C14 18 16 19 17 17C19 16 18 14 18 14C18 14 20 14 20 12C20 10 18 10 18 10C19 8 17 7 17 7C16 5 14 6 14 6C14 4 12 2 12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M12 16V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-2xl font-bold text-gray-900">Cannabis Tycoon</h1>
+            <p class="text-sm text-gray-500">Design System v1.0</p>
+          </div>
+        </div>
+        <nav class="hidden md:flex gap-6">
+          <a href="#icons" class="text-gray-600 hover:text-green-500 transition">Icons</a>
+          <a href="#colors" class="text-gray-600 hover:text-green-500 transition">Colors</a>
+          <a href="#animations" class="text-gray-600 hover:text-green-500 transition">Animations</a>
+          <a href="#components" class="text-gray-600 hover:text-green-500 transition">Components</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-8">
+
+    <!-- Hero Section -->
+    <section class="text-center py-12">
+      <div class="inline-block animate-bounce-in">
+        <div class="w-24 h-24 mx-auto text-green-500 animate-plant-grow">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22V13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="10" cy="10" r="3" fill="currentColor" opacity="0.3"/>
+            <circle cx="14" cy="10" r="3" fill="currentColor" opacity="0.3"/>
+            <circle cx="12" cy="13" r="3" fill="currentColor" opacity="0.3"/>
+            <path d="M12 13C12 13 8 11 6 9C4 7 5 5 7 6C9 7 12 9 12 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 13C12 13 16 11 18 9C20 7 19 5 17 6C15 7 12 9 12 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <h2 class="text-4xl font-bold text-gray-900 mt-6">Professional Visual Design System</h2>
+      <p class="text-xl text-gray-600 mt-2">50+ SVG Icons, Animations, and Components</p>
+      <div class="flex gap-4 justify-center mt-8">
+        <button class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+          View on GitHub
+        </button>
+        <button class="bg-white text-green-500 border-2 border-green-500 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition">
+          Download
+        </button>
+      </div>
+    </section>
+
+    <!-- Icons Section -->
+    <section id="icons" class="section py-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8">Icon Library</h2>
+
+      <!-- Resources -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="w-6 h-6 bg-green-500 rounded"></span>
+          Resources
+        </h3>
+        <div class="grid grid-cols-5 md:grid-cols-10 gap-6">
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-green-500">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M6 9V9C6 10.1046 5.10457 11 4 11V11" stroke="currentColor" stroke-width="2"/>
+                <path d="M18 9V9C18 10.1046 18.8954 11 20 11V11" stroke="currentColor" stroke-width="2"/>
+                <path d="M6 15V15C6 13.8954 5.10457 13 4 13V13" stroke="currentColor" stroke-width="2"/>
+                <path d="M18 15V15C18 13.8954 18.8954 13 20 13V13" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">money</span>
+          </div>
+
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-green-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C12 2 10 4 10 6C10 6 8 5 7 7C7 7 5 8 6 10C6 10 4 10 4 12C4 14 6 14 6 14C6 14 5 16 7 17C7 17 8 19 10 18C10 18 10 20 12 20C14 20 14 18 14 18C14 18 16 19 17 17C19 16 18 14 18 14C18 14 20 14 20 12C20 10 18 10 18 10C19 8 17 7 17 7C16 5 14 6 14 6C14 4 12 2 12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M12 16V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">bud</span>
+          </div>
+
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-purple-500">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.3"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">premium</span>
+          </div>
+
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-amber-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="8" cy="9" rx="2.5" ry="3" stroke="currentColor" stroke-width="2"/>
+                <ellipse cx="16" cy="9" rx="2.5" ry="3" stroke="currentColor" stroke-width="2"/>
+                <ellipse cx="12" cy="15" rx="2.5" ry="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 11L10 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16 11L14 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">seeds</span>
+          </div>
+
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-blue-500">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 2L16 8L22 9L17.5 13.5L19 20L13 17L7 20L8.5 13.5L3 9L9 8L13 2Z" fill="currentColor" opacity="0.3"/>
+                <path d="M13 2L16 8L22 9L17.5 13.5L19 20L13 17L7 20L8.5 13.5L3 9L9 8L13 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">xp</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plants -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="w-6 h-6 bg-emerald-600 rounded"></span>
+          Plants & Strains
+        </h3>
+        <div class="grid grid-cols-3 md:grid-cols-6 gap-6">
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-10 h-10 text-emerald-600 animate-plant-sway">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 14C12 14 8 12 6 10C4 8 5 6 7 7C9 8 12 10 12 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 14C12 14 16 12 18 10C20 8 19 6 17 7C15 8 12 10 12 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 10C12 10 10 8 9 6C8 4 9 3 10 4C11 5 12 7 12 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 10C12 10 14 8 15 6C16 4 15 3 14 4C13 5 12 7 12 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <ellipse cx="12" cy="12" rx="3" ry="4" fill="currentColor" opacity="0.2"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center font-semibold">Indica</span>
+            <span class="text-xs text-emerald-600">Body</span>
+          </div>
+
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-10 h-10 text-lime-500 animate-plant-sway animation-delay-200">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 12C12 12 9 11 7 9C5 7 6 5 8 6C10 7 12 9 12 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 12C12 12 15 11 17 9C19 7 18 5 16 6C14 7 12 9 12 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 8C12 8 10 7 9 5C8 3 9 2 10 3C11 4 12 6 12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 8C12 8 14 7 15 5C16 3 15 2 14 3C13 4 12 6 12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 6C12 6 11 5 10 4C9 3 10 2 11 2.5C12 3 12 4 12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 6C12 6 13 5 14 4C15 3 14 2 13 2.5C12 3 12 4 12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center font-semibold">Sativa</span>
+            <span class="text-xs text-lime-600">Mind</span>
+          </div>
+
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-10 h-10 text-teal-500 animate-plant-sway animation-delay-300">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 13C12 13 9 11 7 9C5 7 6 5 8 6C10 7 12 9 12 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 13C12 13 15 11 17 9C19 7 18 5 16 6C14 7 12 9 12 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 9C12 9 10 7.5 9 6C8 4 9 3 10 4C11 5 12 7 12 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 9C12 9 14 7.5 15 6C16 4 15 3 14 4C13 5 12 7 12 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <ellipse cx="12" cy="10" rx="2.5" ry="3" fill="currentColor" opacity="0.2"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center font-semibold">Hybrid</span>
+            <span class="text-xs text-teal-600">Balance</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="w-6 h-6 bg-blue-600 rounded"></span>
+          Actions
+        </h3>
+        <div class="grid grid-cols-5 md:grid-cols-10 gap-6">
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-blue-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="17" r="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 15V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 8C12 8 10 7 9 6C8 5 9 4 10 5C11 6 12 7 12 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 8C12 8 14 7 15 6C16 5 15 4 14 5C13 6 12 7 12 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M6 19H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 19V21M16 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">plant</span>
+          </div>
+
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-green-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 12L9 17L20 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 17C12 17 10 15 8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16 10C16 10 14 8 12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="9" cy="17" r="1.5" fill="currentColor" opacity="0.3"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">harvest</span>
+          </div>
+
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-amber-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3H6L8 17H18L21 7H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="9" cy="20" r="1.5" fill="currentColor"/>
+                <circle cx="17" cy="20" r="1.5" fill="currentColor"/>
+                <path d="M14 3L17 6L14 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">sell</span>
+          </div>
+
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-purple-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 4L15 10H19L16 14L17 20L12 17L7 20L8 14L5 10H9L12 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M12 8V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M10 11L12 9L14 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">upgrade</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workers -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="w-6 h-6 bg-indigo-600 rounded"></span>
+          Workers
+        </h3>
+        <div class="grid grid-cols-5 md:grid-cols-10 gap-6">
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-indigo-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="5" r="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M6 21V16C6 14 7 13 9 13H15C17 13 18 14 18 16V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M9 18L12 15L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="10" y="3" width="4" height="2" rx="1" fill="currentColor" opacity="0.3"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">gardener</span>
+          </div>
+
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-indigo-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="5" r="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M6 21V16C6 14 7 13 9 13H15C17 13 18 14 18 16V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 15L10 17M14 15L16 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="9" cy="16" r="1" fill="currentColor" opacity="0.3"/>
+                <circle cx="15" cy="16" r="1" fill="currentColor" opacity="0.3"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">trimmer</span>
+          </div>
+
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-green-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="5" r="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M6 21V16C6 14 7 13 9 13H15C17 13 18 14 18 16V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M9 16H11M13 16H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <rect x="4" y="14" width="3" height="4" rx="0.5" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="17" y="14" width="3" height="4" rx="0.5" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">dealer</span>
+          </div>
+
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-orange-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="5" r="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M6 21V16C6 14 7 13 9 13H15C17 13 18 14 18 16V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 11L10 9L12 7L14 9L12 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M9 15L10 17L11 15M13 15L14 17L15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">security</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Police/Risk -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="w-6 h-6 bg-red-600 rounded"></span>
+          Police & Risk
+        </h3>
+        <div class="grid grid-cols-4 md:grid-cols-8 gap-6">
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer animate-raid-alert">
+            <div class="w-8 h-8 text-red-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L17 5V10C17 14 15 17 12 19C9 17 7 14 7 10V5L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 7V10M10 10H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">police</span>
+          </div>
+
+          <div class="icon-demo flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm hover:shadow-md cursor-pointer">
+            <div class="w-8 h-8 text-red-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M2 7V17L12 22V12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M22 7V17L12 22V12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M8 10L10 12L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="text-xs text-gray-600 text-center">raid</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Colors Section -->
+    <section id="colors" class="section py-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8">Color Palette</h2>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Primary -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Primary (Cannabis Green)</h3>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3">
+              <div class="w-16 h-16 bg-emerald-50 rounded-lg border"></div>
+              <div>
+                <p class="font-mono text-sm">#ECFDF5</p>
+                <p class="text-xs text-gray-500">emerald-50</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-16 h-16 bg-emerald-400 rounded-lg"></div>
+              <div>
+                <p class="font-mono text-sm">#34D399</p>
+                <p class="text-xs text-gray-500">emerald-400</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-16 h-16 bg-emerald-500 rounded-lg shadow-lg"></div>
+              <div>
+                <p class="font-mono text-sm font-bold">#10B981</p>
+                <p class="text-xs text-gray-500">emerald-500 PRIMARY</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-16 h-16 bg-emerald-600 rounded-lg"></div>
+              <div>
+                <p class="font-mono text-sm">#059669</p>
+                <p class="text-xs text-gray-500">emerald-600</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Premium -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Premium (Purple)</h3>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3">
+              <div class="w-16 h-16 bg-purple-100 rounded-lg border"></div>
+              <div>
+                <p class="font-mono text-sm">#F3E8FF</p>
+                <p class="text-xs text-gray-500">purple-100</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-16 h-16 bg-purple-500 rounded-lg shadow-lg"></div>
+              <div>
+                <p class="font-mono text-sm font-bold">#8B5CF6</p>
+                <p class="text-xs text-gray-500">purple-500</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Danger -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Danger (Red)</h3>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3">
+              <div class="w-16 h-16 bg-red-100 rounded-lg border"></div>
+              <div>
+                <p class="font-mono text-sm">#FEE2E2</p>
+                <p class="text-xs text-gray-500">red-100</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-16 h-16 bg-red-500 rounded-lg shadow-lg"></div>
+              <div>
+                <p class="font-mono text-sm font-bold">#EF4444</p>
+                <p class="text-xs text-gray-500">red-500</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Strain Colors -->
+      <div class="mt-12">
+        <h3 class="text-xl font-semibold mb-4">Strain-Specific Colors</h3>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow-sm border-2 border-emerald-600">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 bg-emerald-600 rounded-full"></div>
+              <div>
+                <h4 class="font-bold text-lg">Indica</h4>
+                <p class="text-sm text-gray-600">Body-high, Relaxing</p>
+              </div>
+            </div>
+            <p class="text-sm text-gray-700">Deep, earthy green. Shorter, bushier plants.</p>
+            <p class="font-mono text-sm mt-2">#059669</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm border-2 border-lime-500">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 bg-lime-500 rounded-full"></div>
+              <div>
+                <h4 class="font-bold text-lg">Sativa</h4>
+                <p class="text-sm text-gray-600">Head-high, Energizing</p>
+              </div>
+            </div>
+            <p class="text-sm text-gray-700">Bright, vibrant green. Taller, lankier plants.</p>
+            <p class="font-mono text-sm mt-2">#84CC16</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-sm border-2 border-teal-500">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 bg-teal-500 rounded-full"></div>
+              <div>
+                <h4 class="font-bold text-lg">Hybrid</h4>
+                <p class="text-sm text-gray-600">Balanced</p>
+              </div>
+            </div>
+            <p class="text-sm text-gray-700">Balanced blue-green. Medium characteristics.</p>
+            <p class="font-mono text-sm mt-2">#14B8A6</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animations Section -->
+    <section id="animations" class="section py-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8">Animations</h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Plant Grow -->
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="font-semibold mb-3">Plant Grow</h3>
+          <div class="h-32 flex items-center justify-center bg-gray-50 rounded mb-3">
+            <div id="plantGrowDemo" class="w-16 h-16 text-green-500">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 14C12 14 8 12 6 10C4 8 5 6 7 7C9 8 12 10 12 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 14C12 14 16 12 18 10C20 8 19 6 17 7C15 8 12 10 12 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <button onclick="animatePlantGrow()" class="w-full bg-green-500 text-white py-2 rounded font-semibold hover:bg-green-600 transition">
+            Replay
+          </button>
+        </div>
+
+        <!-- Money Popup -->
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="font-semibold mb-3">Money Popup</h3>
+          <div class="h-32 flex items-center justify-center bg-gray-50 rounded mb-3 relative overflow-hidden" id="moneyContainer">
+            <div class="w-10 h-10 text-green-500">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+          </div>
+          <button onclick="animateMoneyPopup()" class="w-full bg-green-500 text-white py-2 rounded font-semibold hover:bg-green-600 transition">
+            Replay
+          </button>
+        </div>
+
+        <!-- Level Up -->
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="font-semibold mb-3">Level Up</h3>
+          <div class="h-32 flex items-center justify-center bg-gray-50 rounded mb-3">
+            <div id="levelUpDemo" class="w-16 h-16 text-amber-500">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" fill="currentColor" opacity="0.3"/>
+                <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <button onclick="animateLevelUp()" class="w-full bg-amber-500 text-white py-2 rounded font-semibold hover:bg-amber-600 transition">
+            Replay
+          </button>
+        </div>
+
+        <!-- Raid Alert -->
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="font-semibold mb-3">Police Raid Alert</h3>
+          <div id="raidDemo" class="h-32 flex items-center justify-center bg-gray-50 rounded mb-3 border-2 border-transparent">
+            <div class="w-16 h-16 text-red-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L17 5V10C17 14 15 17 12 19C9 17 7 14 7 10V5L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+          </div>
+          <button onclick="animateRaid()" class="w-full bg-red-500 text-white py-2 rounded font-semibold hover:bg-red-600 transition">
+            Replay
+          </button>
+        </div>
+
+        <!-- Harvest -->
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="font-semibold mb-3">Harvest Shake</h3>
+          <div class="h-32 flex items-center justify-center bg-gray-50 rounded mb-3">
+            <div id="harvestDemo" class="w-16 h-16 text-green-600">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22V13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="10" cy="10" r="3" fill="currentColor" opacity="0.3"/>
+                <circle cx="14" cy="10" r="3" fill="currentColor" opacity="0.3"/>
+                <circle cx="12" cy="13" r="3" fill="currentColor" opacity="0.3"/>
+              </svg>
+            </div>
+          </div>
+          <button onclick="animateHarvest()" class="w-full bg-green-500 text-white py-2 rounded font-semibold hover:bg-green-600 transition">
+            Replay
+          </button>
+        </div>
+
+        <!-- Float -->
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="font-semibold mb-3">Float (Continuous)</h3>
+          <div class="h-32 flex items-center justify-center bg-gray-50 rounded mb-3">
+            <div class="w-12 h-12 text-purple-500 animate-float">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.3"/>
+              </svg>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600 text-center">Always floating</p>
+        </div>
+      </div>
+
+      <!-- Animation Code Examples -->
+      <div class="mt-12 bg-gray-900 text-gray-100 p-6 rounded-lg">
+        <h3 class="text-xl font-semibold mb-4">Usage Example</h3>
+        <pre class="text-sm overflow-x-auto"><code>&lt;!-- Add animation class to any element --&gt;
+&lt;div class="animate-plant-grow"&gt;...&lt;/div&gt;
+&lt;div class="animate-money-popup"&gt;+$100&lt;/div&gt;
+&lt;div class="animate-level-up"&gt;LEVEL UP!&lt;/div&gt;
+&lt;div class="animate-raid-alert"&gt;WARNING!&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- Components Section -->
+    <section id="components" class="section py-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8">UI Components</h2>
+
+      <!-- Buttons -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-4">Buttons</h3>
+        <div class="flex flex-wrap gap-4">
+          <button class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+            Primary Action
+          </button>
+          <button class="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+            Premium Action
+          </button>
+          <button class="bg-white text-green-500 border-2 border-green-500 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition">
+            Secondary
+          </button>
+          <button class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+            Danger
+          </button>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-4">Cards</h3>
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Plant Card -->
+          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition">
+            <div class="bg-gradient-to-br from-green-50 to-emerald-100 p-6 text-center">
+              <div class="w-20 h-20 mx-auto text-emerald-600 animate-plant-sway">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 22V13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="10" cy="10" r="3" fill="currentColor" opacity="0.3"/>
+                  <circle cx="14" cy="10" r="3" fill="currentColor" opacity="0.3"/>
+                </svg>
+              </div>
+            </div>
+            <div class="p-4">
+              <h4 class="font-bold text-lg mb-1">OG Kush</h4>
+              <p class="text-sm text-gray-600 mb-3">Indica • Level 5</p>
+              <div class="space-y-2">
+                <div>
+                  <div class="flex justify-between text-xs mb-1">
+                    <span class="text-gray-600">Growth</span>
+                    <span class="font-semibold">75%</span>
+                  </div>
+                  <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full" style="width: 75%"></div>
+                  </div>
+                </div>
+              </div>
+              <button class="w-full mt-4 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition">
+                Harvest
+              </button>
+            </div>
+          </div>
+
+          <!-- Premium Card -->
+          <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl shadow-sm border-2 border-purple-500 overflow-hidden hover:shadow-lg transition">
+            <div class="bg-gradient-to-br from-purple-100 to-purple-200 p-6 text-center">
+              <div class="w-16 h-16 mx-auto text-purple-600 animate-float">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.3"/>
+                </svg>
+              </div>
+            </div>
+            <div class="p-4">
+              <h4 class="font-bold text-lg mb-1">Premium Pack</h4>
+              <p class="text-sm text-gray-600 mb-3">Special Offer</p>
+              <div class="text-center mb-4">
+                <span class="text-3xl font-bold text-purple-600">$9.99</span>
+              </div>
+              <button class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-2 rounded-lg font-semibold hover:shadow-lg transition">
+                Purchase
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats Card -->
+          <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition">
+            <div class="p-6">
+              <h4 class="font-bold text-lg mb-4">Your Empire</h4>
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 text-green-500">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                      </svg>
+                    </div>
+                    <span class="text-sm text-gray-600">Money</span>
+                  </div>
+                  <span class="font-bold text-green-500">$45,230</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 text-green-600">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C12 2 10 4 10 6C10 6 8 5 7 7C7 7 5 8 6 10C6 10 4 10 4 12C4 14 6 14 6 14C6 14 5 16 7 17C7 17 8 19 10 18C10 18 10 20 12 20C14 20 14 18 14 18C14 18 16 19 17 17C19 16 18 14 18 14C18 14 20 14 20 12C20 10 18 10 18 10C19 8 17 7 17 7C16 5 14 6 14 6C14 4 12 2 12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <span class="text-sm text-gray-600">Buds</span>
+                  </div>
+                  <span class="font-bold text-green-600">1,234</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 text-blue-500">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 2L16 8L22 9L17.5 13.5L19 20L13 17L7 20L8.5 13.5L3 9L9 8L13 2Z" fill="currentColor" opacity="0.3"/>
+                        <path d="M13 2L16 8L22 9L17.5 13.5L19 20L13 17L7 20L8.5 13.5L3 9L9 8L13 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <span class="text-sm text-gray-600">Level</span>
+                  </div>
+                  <span class="font-bold text-blue-500">23</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bars -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-4">Progress Indicators</h3>
+        <div class="space-y-6 bg-white p-6 rounded-lg">
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-gray-600">Plant Growth</span>
+              <span class="font-semibold">85%</span>
+            </div>
+            <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full animate-progress" style="width: 85%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-gray-600">Level Progress</span>
+              <span class="font-semibold">42%</span>
+            </div>
+            <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full" style="width: 42%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-gray-600">Premium Boost</span>
+              <span class="font-semibold">60%</span>
+            </div>
+            <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-purple-400 to-purple-500 rounded-full" style="width: 60%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 mt-20">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <div class="w-12 h-12 mx-auto text-green-500 mb-4">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C12 2 10 4 10 6C10 6 8 5 7 7C7 7 5 8 6 10C6 10 4 10 4 12C4 14 6 14 6 14C6 14 5 16 7 17C7 17 8 19 10 18C10 18 10 20 12 20C14 20 14 18 14 18C14 18 16 19 17 17C19 16 18 14 18 14C18 14 20 14 20 12C20 10 18 10 18 10C19 8 17 7 17 7C16 5 14 6 14 6C14 4 12 2 12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M12 16V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h2 class="text-2xl font-bold mb-2">Cannabis Tycoon</h2>
+      <p class="text-gray-400 mb-6">Professional Visual Design System v1.0</p>
+      <p class="text-sm text-gray-500">50+ SVG Icons • CSS Animations • Tailwind Ready</p>
+    </div>
+  </footer>
+
+  <script>
+    // Animation trigger functions
+    function animatePlantGrow() {
+      const el = document.getElementById('plantGrowDemo');
+      el.classList.remove('animate-plant-grow');
+      setTimeout(() => el.classList.add('animate-plant-grow'), 10);
+    }
+
+    function animateMoneyPopup() {
+      const container = document.getElementById('moneyContainer');
+      const popup = document.createElement('div');
+      popup.className = 'absolute text-2xl font-bold text-green-500 animate-money-popup';
+      popup.textContent = '+$100';
+      container.appendChild(popup);
+      setTimeout(() => popup.remove(), 1500);
+    }
+
+    function animateLevelUp() {
+      const el = document.getElementById('levelUpDemo');
+      el.classList.remove('animate-level-up');
+      setTimeout(() => el.classList.add('animate-level-up'), 10);
+    }
+
+    function animateRaid() {
+      const el = document.getElementById('raidDemo');
+      el.classList.add('animate-raid-alert');
+      setTimeout(() => el.classList.remove('animate-raid-alert'), 3000);
+    }
+
+    function animateHarvest() {
+      const el = document.getElementById('harvestDemo');
+      el.classList.remove('animate-harvest');
+      setTimeout(() => el.classList.add('animate-harvest'), 10);
+    }
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
+</body>
+</html>

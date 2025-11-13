@@ -1,0 +1,626 @@
+/**
+ * Cannabis Manager - Global Styles
+ * Design System v1.0
+ */
+
+/* Tailwind Imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Layer - Global Defaults */
+@layer base {
+  /* Body Styles */
+  body {
+    @apply bg-white dark:bg-dark-bg text-gray-900 dark:text-white;
+    @apply antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Heading Defaults */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold;
+  }
+
+  h1 {
+    @apply text-display-lg;
+  }
+
+  h2 {
+    @apply text-display-md;
+  }
+
+  h3 {
+    @apply text-display-sm;
+  }
+
+  /* Links */
+  a {
+    @apply text-primary-600 dark:text-primary-400;
+    @apply hover:text-primary-700 dark:hover:text-primary-300;
+    @apply transition-colors duration-200;
+  }
+
+  /* Focus Visible for better accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2 dark:ring-offset-dark-bg;
+  }
+
+  /* Scrollbar Styling (Webkit) */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-dark-surface;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-dark-border rounded-full;
+    @apply hover:bg-gray-400 dark:hover:bg-gray-600;
+  }
+}
+
+/* Component Layer - Reusable Components */
+@layer components {
+  /* Button Base */
+  .btn {
+    @apply px-6 py-3;
+    @apply font-semibold text-sm;
+    @apply rounded-xl;
+    @apply transition-all duration-200;
+    @apply focus:outline-none focus:ring-4;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Button Variants */
+  .btn-primary {
+    @apply btn;
+    @apply bg-primary-600 hover:bg-primary-700 active:bg-primary-800;
+    @apply text-white;
+    @apply shadow-soft hover:shadow-medium;
+    @apply focus:ring-primary-200 dark:focus:ring-primary-800;
+  }
+
+  .btn-secondary {
+    @apply btn;
+    @apply bg-white dark:bg-dark-surface;
+    @apply border-2 border-gray-300 dark:border-dark-border;
+    @apply hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-dark-elevated;
+    @apply text-gray-700 dark:text-gray-200;
+    @apply focus:ring-primary-200;
+  }
+
+  .btn-danger {
+    @apply btn;
+    @apply bg-danger-600 hover:bg-danger-700 active:bg-danger-800;
+    @apply text-white;
+    @apply shadow-soft hover:shadow-medium;
+    @apply focus:ring-danger-200;
+  }
+
+  .btn-premium {
+    @apply btn font-bold;
+    @apply bg-gradient-to-r from-accent-500 to-accent-600;
+    @apply hover:from-accent-600 hover:to-accent-700;
+    @apply text-white;
+    @apply shadow-glow-accent;
+    @apply focus:ring-accent-200;
+  }
+
+  .btn-icon {
+    @apply p-3;
+    @apply bg-white dark:bg-dark-surface;
+    @apply border border-gray-300 dark:border-dark-border;
+    @apply hover:bg-gray-50 dark:hover:bg-dark-elevated;
+    @apply rounded-lg;
+    @apply transition-colors duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500;
+  }
+
+  /* Card Base */
+  .card {
+    @apply bg-white dark:bg-dark-surface;
+    @apply border border-gray-200 dark:border-dark-border;
+    @apply rounded-2xl;
+    @apply p-6;
+    @apply shadow-soft hover:shadow-medium;
+    @apply transition-shadow duration-200;
+  }
+
+  .card-interactive {
+    @apply card;
+    @apply cursor-pointer;
+    @apply hover:border-primary-500;
+    @apply active:scale-95;
+    @apply transition-all duration-200;
+  }
+
+  .card-plant {
+    @apply relative;
+    @apply bg-gradient-to-br from-primary-50 to-primary-100;
+    @apply dark:from-dark-surface dark:to-dark-elevated;
+    @apply border border-primary-200 dark:border-dark-border;
+    @apply rounded-2xl p-6;
+    @apply shadow-medium;
+    @apply overflow-hidden;
+  }
+
+  /* Input Styles */
+  .input {
+    @apply w-full px-4 py-3;
+    @apply bg-white dark:bg-dark-surface;
+    @apply border border-gray-300 dark:border-dark-border;
+    @apply rounded-xl;
+    @apply text-gray-900 dark:text-white;
+    @apply placeholder:text-gray-400 dark:placeholder:text-gray-600;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+    @apply disabled:bg-gray-100 dark:disabled:bg-dark-bg disabled:cursor-not-allowed;
+    @apply transition-shadow duration-200;
+  }
+
+  /* Badge Base */
+  .badge {
+    @apply inline-flex items-center gap-1;
+    @apply px-3 py-1;
+    @apply text-xs font-semibold;
+    @apply rounded-full;
+  }
+
+  .badge-success {
+    @apply badge;
+    @apply bg-success-100 dark:bg-success-900/30;
+    @apply text-success-700 dark:text-success-300;
+  }
+
+  .badge-danger {
+    @apply badge;
+    @apply bg-danger-100 dark:bg-danger-900/30;
+    @apply text-danger-700 dark:text-danger-300;
+  }
+
+  .badge-primary {
+    @apply badge;
+    @apply bg-primary-100 dark:bg-primary-900/30;
+    @apply text-primary-700 dark:text-primary-300;
+  }
+
+  .badge-premium {
+    @apply badge font-bold;
+    @apply bg-gradient-to-r from-secondary-500 to-secondary-600;
+    @apply text-white;
+    @apply shadow-glow-secondary;
+  }
+
+  /* Progress Bar */
+  .progress-bar {
+    @apply h-3 bg-gray-200 dark:bg-dark-bg;
+    @apply rounded-full overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-primary-600;
+    @apply rounded-full;
+    @apply transition-all duration-500;
+  }
+
+  .progress-fill-animated {
+    @apply progress-fill;
+    @apply bg-gradient-to-r from-primary-500 to-primary-600;
+    @apply animate-pulse-soft;
+  }
+
+  /* Resource Display */
+  .resource-display {
+    @apply inline-flex items-center gap-2;
+    @apply px-4 py-2;
+    @apply rounded-full;
+    @apply border;
+  }
+
+  .resource-coins {
+    @apply resource-display;
+    @apply bg-accent-50 dark:bg-accent-900/20;
+    @apply border-accent-200 dark:border-accent-800;
+  }
+
+  .resource-gems {
+    @apply resource-display;
+    @apply bg-secondary-50 dark:bg-secondary-900/20;
+    @apply border-secondary-200 dark:border-secondary-800;
+  }
+
+  /* Modal/Dialog */
+  .modal-backdrop {
+    @apply fixed inset-0;
+    @apply bg-black/50 backdrop-blur-sm;
+    @apply z-50;
+    @apply flex items-center justify-center;
+    @apply p-4;
+    @apply animate-fade-in;
+  }
+
+  .modal {
+    @apply w-full max-w-md;
+    @apply bg-white dark:bg-dark-surface;
+    @apply rounded-3xl;
+    @apply shadow-hard;
+    @apply overflow-hidden;
+    @apply animate-scale-in;
+  }
+
+  .modal-header {
+    @apply flex items-center justify-between;
+    @apply p-6;
+    @apply border-b border-gray-200 dark:border-dark-border;
+  }
+
+  .modal-body {
+    @apply p-6;
+  }
+
+  .modal-footer {
+    @apply flex gap-3;
+    @apply p-6;
+    @apply bg-gray-50 dark:bg-dark-elevated;
+  }
+
+  /* Toast/Notification */
+  .toast {
+    @apply fixed top-4 right-4 z-90;
+    @apply max-w-sm;
+    @apply flex items-start gap-3;
+    @apply p-4;
+    @apply rounded-xl;
+    @apply shadow-medium;
+    @apply animate-slide-left;
+  }
+
+  .toast-success {
+    @apply toast;
+    @apply bg-success-50 dark:bg-success-900/20;
+    @apply border border-success-200 dark:border-success-800;
+  }
+
+  .toast-error {
+    @apply toast;
+    @apply bg-danger-50 dark:bg-danger-900/20;
+    @apply border border-danger-200 dark:border-danger-800;
+  }
+
+  .toast-info {
+    @apply toast;
+    @apply bg-primary-50 dark:bg-primary-900/20;
+    @apply border border-primary-200 dark:border-primary-800;
+  }
+}
+
+/* Utilities Layer - Custom Utility Classes */
+@layer utilities {
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Safe Area Padding (for mobile notches) */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-area-right {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Text Truncate Multi-line */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    @apply bg-white/80 dark:bg-dark-surface/80;
+    @apply backdrop-blur-lg;
+  }
+
+  /* Glow Effects */
+  .glow-primary {
+    @apply shadow-glow-primary;
+  }
+
+  .glow-accent {
+    @apply shadow-glow-accent;
+  }
+
+  .glow-secondary {
+    @apply shadow-glow-secondary;
+  }
+
+  /* Hover Scale */
+  .hover-scale {
+    @apply transition-transform duration-200;
+    @apply hover:scale-105;
+    @apply active:scale-95;
+  }
+
+  /* Hover Lift */
+  .hover-lift {
+    @apply transition-all duration-300;
+    @apply hover:-translate-y-1;
+    @apply hover:shadow-hard;
+  }
+
+  /* Text Gradient */
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary-500 to-primary-700;
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-accent-500 to-accent-700;
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-gradient-secondary {
+    @apply bg-gradient-to-r from-secondary-500 to-secondary-700;
+    @apply bg-clip-text text-transparent;
+  }
+
+  /* No Scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Custom Animations (not in Tailwind config) */
+@keyframes slideLeft {
+  0% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-left {
+  animation: slideLeft 0.3s ease-out;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark Mode Auto-Detection */
+@media (prefers-color-scheme: dark) {
+  /* Automatically handled by Tailwind's dark mode */
+}
+
+/* Print Styles */
+@media print {
+  body {
+    @apply bg-white text-black;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  /* Better tap targets */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Prevent zoom on input focus (iOS) */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  * {
+    border-width: 2px !important;
+  }
+
+  .shadow-soft,
+  .shadow-medium,
+  .shadow-hard {
+    box-shadow: none !important;
+    @apply border-2;
+  }
+}
+
+/* Loading State Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  @apply animate-pulse bg-gray-200 dark:bg-gray-700 rounded;
+}
+
+.skeleton-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(
+    to right,
+    #f3f4f6 0%,
+    #e5e7eb 20%,
+    #f3f4f6 40%,
+    #f3f4f6 100%
+  );
+  background-size: 2000px 100%;
+}
+
+.dark .skeleton-shimmer {
+  background: linear-gradient(
+    to right,
+    #374151 0%,
+    #4b5563 20%,
+    #374151 40%,
+    #374151 100%
+  );
+  background-size: 2000px 100%;
+}
+
+/* Game-Specific Utilities */
+.plant-slot {
+  @apply aspect-square;
+  @apply rounded-2xl;
+  @apply p-4;
+  @apply flex flex-col items-center justify-center;
+  @apply transition-all duration-200;
+}
+
+.plant-slot-empty {
+  @apply plant-slot;
+  @apply border-2 border-dashed border-gray-300 dark:border-dark-border;
+  @apply hover:border-primary-500 hover:bg-primary-50/50 dark:hover:bg-primary-900/10;
+  @apply cursor-pointer;
+}
+
+.plant-slot-growing {
+  @apply plant-slot;
+  @apply bg-gradient-to-br from-primary-50 to-primary-100;
+  @apply dark:from-dark-surface dark:to-dark-elevated;
+  @apply border-2 border-primary-200 dark:border-primary-800;
+  @apply animate-pulse-soft;
+}
+
+.plant-slot-ready {
+  @apply plant-slot;
+  @apply bg-gradient-to-br from-success-50 to-success-100;
+  @apply dark:from-success-900/20 dark:to-success-800/20;
+  @apply border-2 border-success-400 dark:border-success-600;
+  @apply shadow-glow-primary;
+  @apply animate-float;
+  @apply cursor-pointer;
+  @apply hover:scale-105;
+}
+
+/* Number Formatting */
+.number-display {
+  @apply font-mono font-bold;
+  @apply tabular-nums;
+}
+
+/* Stat Display */
+.stat-card {
+  @apply bg-gray-800 border border-gray-700;
+  @apply rounded-xl p-4;
+  @apply shadow-soft hover:shadow-medium;
+  @apply transition-all duration-200;
+}
+
+.stat-icon {
+  @apply w-10 h-10;
+  @apply rounded-lg;
+  @apply flex items-center justify-center;
+  @apply flex-shrink-0;
+}
+
+.stat-value {
+  @apply text-2xl font-bold;
+  @apply text-gray-900 dark:text-white;
+}
+
+.stat-label {
+  @apply text-xs text-gray-600 dark:text-gray-400;
+}
+
+/* Tab Buttons */
+.tab-btn {
+  @apply px-6 py-3;
+  @apply font-semibold text-sm;
+  @apply border-b-2 border-transparent;
+  @apply text-gray-400;
+  @apply transition-all duration-200;
+  @apply hover:text-white hover:border-gray-600;
+  @apply cursor-pointer;
+}
+
+.tab-btn.active {
+  @apply text-white border-green-500;
+}
+
+/* Button Size Modifiers */
+.btn-sm {
+  @apply px-3 py-1.5 text-xs;
+}
+
+.btn-lg {
+  @apply px-8 py-4 text-base;
+}
+
+/* Utility Classes for Game UI */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.bg-gray-750 {
+  background-color: rgb(45, 55, 72);
+}

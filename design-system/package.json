@@ -1,0 +1,37 @@
+{
+  "name": "cannabis-tycoon-design-system",
+  "version": "1.0.0",
+  "description": "Professional visual design system for Cannabis Tycoon idle/clicker game",
+  "main": "icons.js",
+  "style": "animations.css",
+  "type": "module",
+  "keywords": [
+    "design-system",
+    "icons",
+    "svg",
+    "cannabis",
+    "game",
+    "ui",
+    "animations",
+    "tailwind"
+  ],
+  "author": "Cannabis Tycoon Team",
+  "license": "MIT",
+  "exports": {
+    ".": "./icons.js",
+    "./icons": "./icons.js",
+    "./animations": "./animations.css",
+    "./logo": "./logo.svg"
+  },
+  "files": [
+    "icons.js",
+    "animations.css",
+    "logo.svg",
+    "README.md",
+    "VISUAL_GUIDE.md",
+    "CHEATSHEET.md"
+  ],
+  "scripts": {
+    "demo": "python -m http.server 8000"
+  }
+}
