@@ -16,6 +16,33 @@ export class ResourceManager {
 
   initialize(gameState: GameState): void {
     this.gameState = gameState;
+
+    // Setup event listeners
+    this.setupEventListeners();
+  }
+
+  /**
+   * Setup event listeners
+   */
+  private setupEventListeners(): void {
+    // Give XP when plants are harvested
+    this.eventBus.on('plant:harvested', (event) => {
+      const { money } = event.data;
+      // Give XP based on money earned (0.1 XP per dollar) + base 10 XP per harvest
+      const xpFromMoney = money * 0.1;
+      const baseXP = 10;
+      this.addExperience(xpFromMoney + baseXP);
+    });
+
+    // Give XP when upgrades are purchased
+    this.eventBus.on('upgrade:purchased', () => {
+      this.addExperience(5); // 5 XP per upgrade
+    });
+
+    // Give XP when quests are completed
+    this.eventBus.on('quest:completed', () => {
+      this.addExperience(20); // 20 XP per quest
+    });
   }
 
   // ==================== MONEY ====================

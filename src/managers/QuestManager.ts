@@ -47,13 +47,21 @@ export class QuestManager {
     const config = this.questConfigs.get(questId);
     const state = this.gameState.quests[questId];
 
-    if (!config || !state || state.status !== QuestStatus.IN_PROGRESS) return;
+    if (!config || !state) return;
+
+    // Auto-start quest if it's available
+    if (state.status === QuestStatus.AVAILABLE) {
+      state.status = QuestStatus.IN_PROGRESS;
+    }
+
+    // Only track progress if quest is in progress
+    if (state.status !== QuestStatus.IN_PROGRESS) return;
 
     const oldProgress = state.progress;
     state.progress += amount;
 
     // Check if quest is completed
-    if (state.progress >= config.target && state.status === QuestStatus.IN_PROGRESS) {
+    if (state.progress >= config.target) {
       this.completeQuest(questId);
     }
 
@@ -196,6 +204,11 @@ export class QuestManager {
    * Setup event listeners for quest progress tracking
    */
   private setupEventListeners(): void {
+    // Track plants planted
+    this.eventBus.on('plant:planted', () => {
+      this.updateQuestsOfType('grow_plants', 1);
+    });
+
     // Track harvests
     this.eventBus.on('plant:harvested', () => {
       this.updateQuestsOfType('harvest', 1);
