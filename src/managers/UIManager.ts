@@ -6,6 +6,7 @@
 import type { GameState } from '@types';
 import { EventBus } from '@core/EventBus';
 import { formatMoney, formatNumber, formatTime } from '@utils/formatters';
+import type { StoryBeat, Character, DialogueLine } from '@managers/StoryManager';
 
 interface UIState {
   lastMoney: number;
@@ -228,6 +229,12 @@ export class UIManager {
     this.eventBus.on('player:cannabis_change', () => this.queueUpdate('cannabis'));
     this.eventBus.on('player:level_up', () => this.queueUpdate('level'));
     this.eventBus.on('police:heat_change', () => this.queueUpdate('heat'));
+
+    // Listen to story events
+    this.eventBus.on('story:dialogue_start', (event) => {
+      const { beat, characters } = event.data;
+      this.showDialogue(beat, characters);
+    });
   }
 
   /**
@@ -680,6 +687,118 @@ export class UIManager {
         </div>
       </div>
     `;
+  }
+
+  /**
+   * Show story dialogue
+   */
+  showDialogue(beat: StoryBeat, characters: Character[]): void {
+    const characterMap = new Map(characters.map(c => [c.id, c]));
+
+    // Create dialogue modal
+    const modal = document.createElement('div');
+    modal.id = 'story-modal';
+    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fade-in';
+
+    let currentDialogueIndex = 0;
+
+    const renderDialogue = () => {
+      if (currentDialogueIndex >= beat.dialogues.length) {
+        // Dialogue finished
+        modal.remove();
+
+        // Give rewards if any
+        if (beat.rewards) {
+          if (beat.rewards.money) {
+            this.eventBus.emit('player:money_change', { amount: beat.rewards.money });
+            this.showNotification(`+${formatMoney(beat.rewards.money)}!`, 'success');
+          }
+          if (beat.rewards.experience) {
+            this.eventBus.emit('player:experience_change', { amount: beat.rewards.experience });
+            this.showNotification(`+${beat.rewards.experience} XP!`, 'success');
+          }
+        }
+
+        return;
+      }
+
+      const dialogue = beat.dialogues[currentDialogueIndex];
+      const character = characterMap.get(dialogue.characterId);
+
+      if (!character) return;
+
+      modal.innerHTML = `
+        <div class="relative max-w-2xl w-full mx-4 bg-gray-800 rounded-2xl shadow-2xl border-2 border-gray-700 overflow-hidden animate-scale-in">
+          <!-- Header -->
+          <div class="bg-gradient-to-r from-gray-900 to-gray-800 px-6 py-4 border-b border-gray-700">
+            <h3 class="text-xl font-bold text-white">${beat.title}</h3>
+            <div class="text-sm text-gray-400">Chapter ${Math.floor(this.gameState!.player.level / 10) + 1}</div>
+          </div>
+
+          <!-- Dialogue Content -->
+          <div class="p-6">
+            <!-- Character Info -->
+            <div class="flex items-center gap-4 mb-4">
+              <div class="text-5xl">${character.avatar}</div>
+              <div>
+                <div class="text-lg font-semibold" style="color: ${character.color}">${character.name}</div>
+                <div class="text-sm text-gray-400">${dialogue.emotion || 'neutral'}</div>
+              </div>
+            </div>
+
+            <!-- Dialogue Text -->
+            <div class="bg-gray-900 rounded-lg p-4 mb-6 border-l-4" style="border-color: ${character.color}">
+              <p class="text-white text-base leading-relaxed">${dialogue.text}</p>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="flex justify-center gap-2 mb-4">
+              ${beat.dialogues.map((_, i) => `
+                <div class="w-2 h-2 rounded-full ${i === currentDialogueIndex ? 'bg-green-500' : i < currentDialogueIndex ? 'bg-green-700' : 'bg-gray-700'}"></div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="bg-gray-900 px-6 py-4 flex justify-between items-center border-t border-gray-700">
+            <div class="text-sm text-gray-400">
+              ${currentDialogueIndex + 1} / ${beat.dialogues.length}
+            </div>
+            <button
+              id="dialogue-next-btn"
+              class="btn-primary"
+            >
+              ${currentDialogueIndex === beat.dialogues.length - 1 ? 'Finish' : 'Next'}
+            </button>
+          </div>
+        </div>
+      `;
+
+      // Add click handler
+      const nextBtn = modal.querySelector('#dialogue-next-btn');
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          currentDialogueIndex++;
+          renderDialogue();
+        });
+      }
+
+      // Allow space/enter to advance
+      const keyHandler = (e: KeyboardEvent) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          currentDialogueIndex++;
+          renderDialogue();
+          if (currentDialogueIndex >= beat.dialogues.length) {
+            document.removeEventListener('keydown', keyHandler);
+          }
+        }
+      };
+      document.addEventListener('keydown', keyHandler);
+    };
+
+    document.body.appendChild(modal);
+    renderDialogue();
   }
 
   /**

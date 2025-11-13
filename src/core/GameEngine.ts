@@ -14,6 +14,7 @@ import { QuestManager } from '@managers/QuestManager';
 import { PoliceManager } from '@managers/PoliceManager';
 import { TickManager } from '@managers/TickManager';
 import { UIManager } from '@managers/UIManager';
+import { StoryManager } from '@managers/StoryManager';
 import type { GameState } from '@types';
 import { createDefaultGameState } from '@config/defaults';
 
@@ -33,6 +34,7 @@ export class GameEngine {
   private policeManager: PoliceManager;
   private tickManager: TickManager;
   private uiManager: UIManager;
+  private storyManager: StoryManager;
 
   // Game state
   private gameState: GameState;
@@ -56,6 +58,7 @@ export class GameEngine {
     this.policeManager = new PoliceManager(this.gameState);
     this.tickManager = new TickManager(this.gameState);
     this.uiManager = UIManager.getInstance();
+    this.storyManager = new StoryManager(this.gameState);
 
     // Setup auto-save
     this.setupAutoSave();
@@ -98,6 +101,7 @@ export class GameEngine {
     this.questManager.initialize(this.gameState);
     this.policeManager.initialize(this.gameState);
     this.tickManager.initialize(this.gameState);
+    this.storyManager.initialize(this.gameState);
 
     // Initialize UI
     this.uiManager.initialize(this.gameState);
@@ -299,6 +303,7 @@ export class GameEngine {
       quest: this.questManager,
       police: this.policeManager,
       ui: this.uiManager,
+      story: this.storyManager,
     };
   }
 }
