@@ -147,7 +147,7 @@ export class FarmManager {
   /**
    * Unlock a plot
    */
-  unlockPlot(plotId: number, cost: number): boolean {
+  unlockPlot(plotId: number, _cost: number): boolean {
     const plot = this.getPlot(plotId);
     if (!plot || plot.isUnlocked) return false;
 

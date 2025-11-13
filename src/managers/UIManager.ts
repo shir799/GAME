@@ -6,7 +6,7 @@
 import type { GameState } from '@types';
 import { EventBus } from '@core/EventBus';
 import { formatMoney, formatNumber, formatTime } from '@utils/formatters';
-import type { StoryBeat, Character, DialogueLine } from '@managers/StoryManager';
+import type { StoryBeat, Character } from '@managers/StoryManager';
 
 interface UIState {
   lastMoney: number;
@@ -67,7 +67,7 @@ export class UIManager {
   /**
    * Update UI (called every frame)
    */
-  update(deltaTime: number): void {
+  update(_deltaTime: number): void {
     if (!this.gameState) return;
 
     // Check what needs updating
@@ -529,7 +529,7 @@ export class UIManager {
     const container = this.elements.get('quests-container');
     if (!container) return;
 
-    const quests = Object.values(this.gameState.quests);
+    const quests = (window as any).game?.managers?.quest?.getAllQuestsWithConfig() || [];
 
     if (quests.length === 0) {
       container.innerHTML = `
@@ -542,7 +542,7 @@ export class UIManager {
     }
 
     container.innerHTML = quests
-      .map(quest => {
+      .map((quest: any) => {
         const progress = (quest.currentProgress / quest.targetProgress) * 100;
         const isComplete = quest.currentProgress >= quest.targetProgress;
 
@@ -597,7 +597,7 @@ export class UIManager {
     const container = this.elements.get('stats-container');
     if (!container) return;
 
-    const stats = this.gameState.stats;
+    const stats = this.gameState.statistics;
 
     container.innerHTML = `
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

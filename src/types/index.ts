@@ -208,6 +208,14 @@ export interface GameStatistics {
   totalHarvests: number;
   totalMoneyEarned: number;
   totalMoneySpent: number;
+  totalCannabisGrown: number;
+  totalPlayTime: number;
+  totalRaids: number;
+  raidsEscaped: number;
+  raidsCaught: number;
+  totalBribesPaid: number;
+  questsCompleted: number;
+  upgradesPurchased: number;
   prestigeLevel: number;
   prestigePoints: number;
 }
@@ -227,6 +235,8 @@ export type GameEventType =
   | 'player:level_up'
   | 'player:money_change'
   | 'player:cannabis_change'
+  | 'player:experience_change'
+  | 'player:reputation_change'
   | 'plant:planted'
   | 'plant:harvested'
   | 'plant:stage_change'
@@ -235,7 +245,9 @@ export type GameEventType =
   | 'quest:completed'
   | 'quest:progress'
   | 'police:raid'
+  | 'police:inspection'
   | 'police:heat_change'
+  | 'story:dialogue_start'
   | 'game:tick'
   | 'game:save'
   | 'game:load'

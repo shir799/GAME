@@ -8,8 +8,6 @@ const game = GameEngine.getInstance();
 game.initialize();
 game.start();
 
-// Debug access in development
-if (import.meta.env && import.meta.env.DEV) {
-  (window as any).game = game;
-  console.log('🎮 Game Engine loaded. Access via window.game');
-}
+// Expose game instance globally for UI event handlers
+(window as any).game = game;
+console.log('🎮 Game Engine loaded. Access via window.game');

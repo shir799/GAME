@@ -2,7 +2,8 @@
  * QuestManager - Manages quests and objectives
  */
 
-import type { GameState, QuestConfig, QuestState, QuestStatus } from '@types';
+import type { GameState, QuestConfig, QuestState } from '@types';
+import { QuestStatus } from '@types';
 import { EventBus } from '@core/EventBus';
 import { QUEST_CONFIGS } from '@config/quests';
 
@@ -28,7 +29,7 @@ export class QuestManager {
       if (!this.gameState.quests[config.id]) {
         this.gameState.quests[config.id] = {
           questId: config.id,
-          status: config.unlockLevel <= gameState.player.level ? 'available' : 'locked',
+          status: config.unlockLevel <= gameState.player.level ? QuestStatus.AVAILABLE : QuestStatus.LOCKED,
           progress: 0,
           completedCount: 0,
         };
@@ -46,13 +47,13 @@ export class QuestManager {
     const config = this.questConfigs.get(questId);
     const state = this.gameState.quests[questId];
 
-    if (!config || !state || state.status !== 'in_progress') return;
+    if (!config || !state || state.status !== QuestStatus.IN_PROGRESS) return;
 
     const oldProgress = state.progress;
     state.progress += amount;
 
     // Check if quest is completed
-    if (state.progress >= config.target && state.status === 'in_progress') {
+    if (state.progress >= config.target && state.status === QuestStatus.IN_PROGRESS) {
       this.completeQuest(questId);
     }
 
@@ -69,9 +70,9 @@ export class QuestManager {
    */
   startQuest(questId: string): boolean {
     const state = this.gameState.quests[questId];
-    if (!state || state.status !== 'available') return false;
+    if (!state || state.status !== QuestStatus.AVAILABLE) return false;
 
-    state.status = 'in_progress';
+    state.status = QuestStatus.IN_PROGRESS;
     state.progress = 0;
 
     return true;
@@ -84,7 +85,7 @@ export class QuestManager {
     const state = this.gameState.quests[questId];
     if (!state) return;
 
-    state.status = 'completed';
+    state.status = QuestStatus.COMPLETED;
     state.completedCount += 1;
     state.lastCompletedAt = Date.now();
 
@@ -98,7 +99,7 @@ export class QuestManager {
     const config = this.questConfigs.get(questId);
     const state = this.gameState.quests[questId];
 
-    if (!config || !state || state.status !== 'completed') return false;
+    if (!config || !state || state.status !== QuestStatus.COMPLETED) return false;
 
     // Give rewards
     config.rewards.forEach((reward) => {
@@ -107,7 +108,7 @@ export class QuestManager {
 
     // Handle repeatable quests
     if (config.isRepeatable) {
-      state.status = 'available';
+      state.status = QuestStatus.AVAILABLE;
       state.progress = 0;
 
       // Apply cooldown if exists
@@ -115,7 +116,7 @@ export class QuestManager {
         state.nextAvailableAt = Date.now() + config.cooldown * 1000;
       }
     } else {
-      state.status = 'claimed';
+      state.status = QuestStatus.CLAIMED;
     }
 
     return true;
@@ -137,8 +138,30 @@ export class QuestManager {
       return (
         state &&
         config.unlockLevel <= this.gameState.player.level &&
-        (state.status === 'available' || state.status === 'in_progress')
+        (state.status === QuestStatus.AVAILABLE || state.status === QuestStatus.IN_PROGRESS)
       );
+    });
+  }
+
+  /**
+   * Get all quests with merged config and state data (for UI)
+   */
+  getAllQuestsWithConfig() {
+    return Array.from(this.questConfigs.values()).map((config) => {
+      const state = this.gameState.quests[config.id];
+      return {
+        id: config.id,
+        name: config.name,
+        description: config.description,
+        type: config.type,
+        status: state.status,
+        currentProgress: state.progress,
+        targetProgress: config.target,
+        rewards: config.rewards,
+        completed: state.status === QuestStatus.COMPLETED || state.status === QuestStatus.CLAIMED,
+        isRepeatable: config.isRepeatable,
+        completedCount: state.completedCount,
+      };
     });
   }
 
@@ -223,10 +246,10 @@ export class QuestManager {
       const state = this.gameState.quests[questId];
       if (
         state &&
-        state.status === 'locked' &&
+        state.status === QuestStatus.LOCKED &&
         config.unlockLevel <= this.gameState.player.level
       ) {
-        state.status = 'available';
+        state.status = QuestStatus.AVAILABLE;
       }
     });
   }

@@ -19,7 +19,7 @@ class Logger {
 
   private constructor() {
     // Only enable in development
-    this.enabled = import.meta.env.DEV;
+    this.enabled = (import.meta as any).env?.DEV || false;
   }
 
   static getInstance(): Logger {

@@ -2,7 +2,8 @@
  * PoliceManager - Manages police heat, raids, and risk mechanics
  */
 
-import type { GameState, PoliceEvent, PoliceEventType } from '@types';
+import type { GameState, PoliceEvent } from '@types';
+import { PoliceEventType } from '@types';
 import { EventBus } from '@core/EventBus';
 
 export class PoliceManager {
@@ -96,7 +97,7 @@ export class PoliceManager {
     const outcome = Math.random() < escapeChance ? 'escaped' : 'caught';
 
     const event: PoliceEvent = {
-      type: 'raid',
+      type: PoliceEventType.RAID,
       timestamp: Date.now(),
       severity,
       outcome,
@@ -217,7 +218,7 @@ export class PoliceManager {
     const severity = Math.random() * 50;
 
     const event: PoliceEvent = {
-      type: 'inspection',
+      type: PoliceEventType.INSPECTION,
       timestamp: Date.now(),
       severity,
       outcome: 'escaped',

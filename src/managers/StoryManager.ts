@@ -39,7 +39,6 @@ export class StoryManager {
   private eventBus: EventBus;
   private characters: Map<string, Character>;
   private storyBeats: StoryBeat[];
-  private currentDialogue: StoryBeat | null = null;
 
   constructor(gameState: GameState) {
     this.gameState = gameState;
@@ -521,18 +520,18 @@ export class StoryManager {
     this.gameState = gameState;
 
     // Check if this is first time playing
-    if (!this.gameState.stats || this.gameState.stats.totalPlayTime < 10000) {
-      // Show intro on first play
+    if (!this.gameState.statistics || this.gameState.playtime < 10) {
+      // Show intro on first play (playtime in seconds)
       this.checkAndTriggerStoryBeats();
     }
 
     // Listen for level ups
-    this.eventBus.on('player:level_up', (event) => {
+    this.eventBus.on('player:level_up', (_event) => {
       this.checkAndTriggerStoryBeats();
     });
 
     // Listen for money changes (for money-triggered beats)
-    this.eventBus.on('player:money_change', (event) => {
+    this.eventBus.on('player:money_change', (_event) => {
       this.checkAndTriggerStoryBeats();
     });
   }
@@ -571,8 +570,6 @@ export class StoryManager {
    * Show a story beat (dialogue sequence)
    */
   private showStoryBeat(beat: StoryBeat): void {
-    this.currentDialogue = beat;
-
     // Emit event for UI to show dialogue
     this.eventBus.emit('story:dialogue_start', {
       beat,
@@ -597,7 +594,7 @@ export class StoryManager {
   /**
    * Update - called every frame
    */
-  update(deltaTime: number): void {
+  update(_deltaTime: number): void {
     // Story manager doesn't need frame updates
   }
 }
